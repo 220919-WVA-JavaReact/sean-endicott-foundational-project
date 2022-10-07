@@ -15,15 +15,18 @@ public class UserService {
 
 
 
-    public User login(){
+    public User login() {
         System.out.println("Enter username");
         String username = sc.nextLine();
+
+
         System.out.println("Enter password");
         String password = sc.nextLine();
 
         User user = ud.getByUsername(username);
 
-        if(user.getPassword().equals(password)){
+
+        if (user.getPassword().equals(password)) {
             System.out.println("Logged in");
             System.out.println(user);
             return user;

@@ -76,6 +76,7 @@ public class UserDAOImpl implements UserDAO {
             }
 
         } catch (SQLException e) {
+            System.out.println("Invalid entry");
             e.printStackTrace();
         }
 
