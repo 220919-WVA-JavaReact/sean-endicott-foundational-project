@@ -17,46 +17,61 @@ public class TicketService {
     public void createTicket(User user){
 
         System.out.println("enter reimbursement amount");
-        String amount = String.valueOf(Float.parseFloat(sc.nextLine()));
+        float amount = sc.nextFloat();
+        sc.nextLine();
+
+        //String amount = String.valueOf(Float.parseFloat(sc.nextLine()));
         System.out.println("Enter description");
         String description = sc.nextLine();
 
-        //boolean successful = td.createTicket(amount, description, user);
-
+        Ticket ticket = td.createTicket(amount, description, user);
     }
 
 
-    public void viewTickets(User isManager) {
-        System.out.println("viewing all tickets");
-        td.getAllTickets();
-    }
-
-
-    public void setStatus(User isManager){
-        System.out.println("Enter status as Pending, approved, denied");
-
-
-    }
-
-    public void getAllTickets() {
-        System.out.println("viewing all tickets");
-
-        List<Ticket> ticketList = td.getAllTickets();
-
-        for(Ticket ticket: ticketList) {
+    public void getMyTickets(User user){
+        List<Ticket> tickets = td.getMyTickets(user.getId());
+        for(Ticket ticket : tickets) {
             System.out.println(ticket);
         }
     }
 
 
-    public void getTicketByUserId() {
-            System.out.println("Enter username to view tickets");
-            List<Ticket> ticketByUserIdList = td.getTicketByUserId();
 
-            for(Ticket ticket: ticketByUserIdList){
-                System.out.println(ticket);
-            }
 
-        }
+//  ------------------------------------------------------------------------
+//    public void viewTickets(User isManager) {
+//        System.out.println("viewing all tickets");
+//        td.getAllTickets();
+//    }
+
+
+//    public void setStatus(User isManager){
+//        System.out.println("Enter status as Pending, approved, denied");
+//
+//
+//    }
+
+//    public void getAllTickets() {
+//        System.out.println("viewing all tickets");
+//
+//        List<Ticket> ticketList = td.getAllTickets();
+//
+//        for(Ticket ticket: ticketList) {
+//            System.out.println(ticket);
+//        }
+//    }
+
+
+//    public void getTicketById() {
+//            System.out.println("Enter user id to view tickets");
+//            int user_id = sc.nextInt();
+//            List<Ticket> ticketByUserIdList = td.getTicketByUserId(user_id);
+//            for(Ticket ticket : ticketByUserIdList ){
+//                System.out.println(ticket);
+//            }
+//
+//
+//
+//        }
 
 }

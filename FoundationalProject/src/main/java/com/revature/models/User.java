@@ -98,7 +98,7 @@ public class User {
                 "id=" + id +
                 ", first='" + first + '\'' +
                 ", last='" + last + '\'' +
-                ", jobTitle='" + manager + '\'' +
+                ", manager='" + manager + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';

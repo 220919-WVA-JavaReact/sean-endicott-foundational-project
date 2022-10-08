@@ -47,16 +47,10 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User createUser(String first, String last, String username, String password) {
-
         User user = new User();
-
-        Connection conn = ConnectionUtil.getConnection();
-        String sql = "INSERT INTO users (first, last, manager, username, password) VALUES (?,?,?,?,?)RETURNING *";
-
-        PreparedStatement stmt = null;
-
-        try {
-               stmt = conn.prepareStatement(sql);
+        try (Connection conn = ConnectionUtil.getConnection()){
+            String sql = "INSERT INTO users (first, last, manager, username, password) VALUES (?,?,?,?,?) RETURNING *";
+            PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, first);
             stmt.setString(2, last);
@@ -67,17 +61,19 @@ public class UserDAOImpl implements UserDAO {
 
             rs = stmt.executeQuery();
             if(rs.next()) {
-
+                int receivedId = rs.getInt("id");
                 String receivedFirst = rs.getString("first");
                 String receivedLast = rs.getString("last");
                 boolean receivedManager = rs.getBoolean("manager");
                 String receivedUsername = rs.getString("username");
                 String receivedPassword = rs.getString("password");
+
+                user = new User(receivedId, receivedFirst, receivedLast, receivedManager, receivedUsername, receivedPassword);
             }
 
         } catch (SQLException e) {
             System.out.println("Invalid entry");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         return user;

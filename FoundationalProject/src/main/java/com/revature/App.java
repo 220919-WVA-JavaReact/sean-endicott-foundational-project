@@ -18,67 +18,47 @@ public class App {
 
 
     public static void main(String[] args) {
-
-        System.out.println("Enter -> 1 to login. Enter -> 2 to register user. Enter -> 3 for manager login");
-        Scanner sc = new Scanner(System.in);
-        String choice = sc.nextLine();
-        User loggedInUser = null;
+        boolean running = true;
+        while(running) {
 
 
-        if(choice.equals("1")){
-            loggedInUser = us.login();
-            System.out.println("Enter 1 to submit a new reimbursement ticket. Enter 2 to view a submitted ticket");
-            String subChoice = sc.nextLine();
+            System.out.println("Enter 1 -> to login.\nEnter 2 -> to register user.\nEnter 3 -> to quit");
+            Scanner sc = new Scanner(System.in);
+            String choice = sc.nextLine();
+            User loggedInUser = null;
 
-            switch (subChoice) {
-                case "1":
-                    ts.createTicket(loggedInUser);
-                    break;
-                case "2":
-                    ts.getTicketByUserId();
-                    break;
-                default:
-                    System.out.println("Invalid input");
+
+            if (choice.equals("1")) {
+                loggedInUser = us.login();
+            } else if (choice.equals("2")) {
+                loggedInUser = us.register();
+            } else if(choice.equals ("3")){
+                running = false;
+            } else {
+                System.out.println("Invalid entry");
             }
 
-        } else if (choice.equals("2")) {
-            loggedInUser = us.register();
+            while (loggedInUser != null) {
+                if (!loggedInUser.isManager()) {
+                    System.out.println("Enter 1 to submit a new reimbursement ticket. Enter 2 to view a submitted ticket. Enter 3 to logout");
+                    String subChoice = sc.nextLine();
 
-        } else if(choice.equals("3")) {
-            loggedInUser = us.login();
-            System.out.println("Enter 1. to view all tickets. 2. view tickets by id 3. view all users");
-                String subChoice = sc.nextLine();
-
-            switch(subChoice){
-                    case "1":
-                        ts.getAllTickets();
-                        break;
-                    case "2":
-                        ts.getTicketByUserId();
-                        break;
-                    case "3":
-                        us.getAllUsers();
-                        break;
+                    switch (subChoice) {
+                        case "1":
+                            ts.createTicket(loggedInUser);
+                            break;
+                        case "2":
+                            ts.getMyTickets(loggedInUser);
+                            break;
+                        case "3":
+                            loggedInUser = null;
+                            break;
+                        default:
+                            System.out.println("Invalid input");
+                            break;
+                    }
                 }
-        }
-
-
-       // while(loggedInUser != null){
-//            if(loggedInUser.isManager()) {
-//                System.out.println("Enter 1 to submit a new reimbursement ticket. Enter 2 to view a submitted ticket");
-//                String subChoice = sc.nextLine();
-//
-//                switch (subChoice) {
-//                    case "1":
-//                        ts.createTicket(loggedInUser);
-//                        break;
-//                    case "2":
-//                        ts.getTicketByUserId();
-//                        break;
-//                    default:
-//                        System.out.println("Invalid input");
-//                }
-//            } else if (loggedInUser.isManager()){
+//            else if (loggedInUser.isManager()){
 //                System.out.println("Enter 1. to view all tickets. 2. view tickets by id ");
 //                String subChoice = sc.nextLine();
 //                TicketService ts = null;
@@ -88,13 +68,13 @@ public class App {
 //                        ts.getAllTickets();
 //                        break;
 //                    case "2":
-//                        ts.getTicketByUserId();
+//                        ts.getTicketById();
 //                        break;
 //
 //                }
 //            }
-        //}
+            }
 
-
+        }
     }
 }

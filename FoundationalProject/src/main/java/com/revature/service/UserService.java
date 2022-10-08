@@ -43,8 +43,6 @@ public class UserService {
         String first = sc.nextLine();
         System.out.println("Enter last name");
         String last = sc.nextLine();
-        System.out.println("Are you a manager? enter true or false?");
-        String manager = sc.nextLine();
         System.out.println("Enter username");
         String username = sc.nextLine();
         System.out.println("Enter password");
