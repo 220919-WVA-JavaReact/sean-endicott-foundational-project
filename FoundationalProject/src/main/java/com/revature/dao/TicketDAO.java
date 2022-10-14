@@ -22,6 +22,5 @@ public interface TicketDAO {
     boolean updateTicketStatus(Ticket ticket);
 
 
-
-
+    List<Ticket> getTicketByUserId(int user_id);
 }

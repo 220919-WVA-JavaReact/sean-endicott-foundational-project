@@ -19,10 +19,10 @@ public class TicketService {
         System.out.println("enter reimbursement amount");
         float amount = sc.nextFloat();
         sc.nextLine();
-
-        //String amount = String.valueOf(Float.parseFloat(sc.nextLine()));
         System.out.println("Enter description");
         String description = sc.nextLine();
+        System.out.println("Enter reimbursement type");
+        String type = sc.nextLine();
 
         Ticket ticket = td.createTicket(amount, description, user);
     }
@@ -37,41 +37,39 @@ public class TicketService {
 
 
 
-
-//  ------------------------------------------------------------------------
-//    public void viewTickets(User isManager) {
-//        System.out.println("viewing all tickets");
-//        td.getAllTickets();
-//    }
+    public void viewTickets(User isManager) {
+        System.out.println("viewing all tickets");
+        td.getAllTickets();
+    }
 
 
-//    public void setStatus(User isManager){
-//        System.out.println("Enter status as Pending, approved, denied");
-//
-//
-//    }
-
-//    public void getAllTickets() {
-//        System.out.println("viewing all tickets");
-//
-//        List<Ticket> ticketList = td.getAllTickets();
-//
-//        for(Ticket ticket: ticketList) {
-//            System.out.println(ticket);
-//        }
-//    }
+    public void setStatus(User isManager){
+        System.out.println("Enter status as Pending, approved, denied");
 
 
-//    public void getTicketById() {
-//            System.out.println("Enter user id to view tickets");
-//            int user_id = sc.nextInt();
-//            List<Ticket> ticketByUserIdList = td.getTicketByUserId(user_id);
-//            for(Ticket ticket : ticketByUserIdList ){
-//                System.out.println(ticket);
-//            }
-//
-//
-//
-//        }
+    }
+
+    public void getAllTickets() {
+        System.out.println("viewing all tickets");
+
+        List<Ticket> ticketList = td.getAllTickets();
+
+        for(Ticket ticket: ticketList) {
+            System.out.println(ticket);
+        }
+    }
+
+
+    public void getTicketById() {
+            System.out.println("Enter user id to view tickets");
+            int user_id = sc.nextInt();
+            List<Ticket> ticketByUserIdList = td.getTicketByUserId(user_id);
+            for(Ticket ticket : ticketByUserIdList ){
+                System.out.println(ticket);
+            }
+
+
+
+        }
 
 }

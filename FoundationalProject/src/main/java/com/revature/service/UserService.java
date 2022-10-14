@@ -18,13 +18,10 @@ public class UserService {
     public User login() {
         System.out.println("Enter username");
         String username = sc.nextLine();
-
-
         System.out.println("Enter password");
         String password = sc.nextLine();
 
         User user = ud.getByUsername(username);
-
 
         if (user.getPassword().equals(password)) {
             System.out.println("Logged in");
@@ -38,7 +35,8 @@ public class UserService {
 
 
 
-    public User register(){
+    public User register() {
+
         System.out.println("Enter first name");
         String first = sc.nextLine();
         System.out.println("Enter last name");
@@ -51,6 +49,8 @@ public class UserService {
         User user = ud.createUser(first, last, username, password);
         return user;
     }
+
+
 
 
 
