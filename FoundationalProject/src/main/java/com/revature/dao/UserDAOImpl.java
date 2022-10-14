@@ -46,7 +46,7 @@ public class UserDAOImpl implements UserDAO {
 
 
     @Override
-    public User createUser(String first, String last, String username, String password) {
+    public User createUser(String first, String last, boolean manager, String username, String password) {
         User user = new User();
         try (Connection conn = ConnectionUtil.getConnection()){
             String sql = "INSERT INTO users (first, last, manager, username, password) VALUES (?,?,?,?,?) RETURNING *";
@@ -54,7 +54,7 @@ public class UserDAOImpl implements UserDAO {
 
             stmt.setString(1, first);
             stmt.setString(2, last);
-            stmt.setBoolean(3, false);
+            stmt.setBoolean(3, manager);
             stmt.setString(4, username);
             stmt.setString(5, password);
             ResultSet rs;

@@ -45,15 +45,11 @@ public class TicketService {
 
     public void setStatus(User isManager){
         System.out.println("Enter status as Pending, approved, denied");
-
-
     }
 
     public void getAllTickets() {
         System.out.println("viewing all tickets");
-
         List<Ticket> ticketList = td.getAllTickets();
-
         for(Ticket ticket: ticketList) {
             System.out.println(ticket);
         }
@@ -64,12 +60,18 @@ public class TicketService {
             System.out.println("Enter user id to view tickets");
             int user_id = sc.nextInt();
             List<Ticket> ticketByUserIdList = td.getTicketByUserId(user_id);
-            for(Ticket ticket : ticketByUserIdList ){
+            for(Ticket ticket : ticketByUserIdList ) {
                 System.out.println(ticket);
             }
-
-
-
         }
+
+    public void getTicketByType() {
+        System.out.println("Enter ticket type to view tickets");
+        int user_id = sc.nextInt();
+        List<Ticket> ticketByUserIdList = td.getTicketByUserId(user_id);
+        for (Ticket ticket : ticketByUserIdList) {
+            System.out.println(ticket);
+        }
+    }
 
 }

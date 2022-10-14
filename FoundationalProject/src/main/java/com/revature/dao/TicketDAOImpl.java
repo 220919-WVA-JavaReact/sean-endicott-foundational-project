@@ -119,6 +119,15 @@ public class TicketDAOImpl implements TicketDAO {
         return false;
     }
 
+    @Override
+    public List<Ticket> getTicketByUserId(int user_id) {
+        return null;
+    }
+
+    @Override
+    public List<Ticket> getTicketByType(String type) {
+        return null;
+    }
 
 
 //    @Override

@@ -23,4 +23,9 @@ public interface TicketDAO {
 
 
     List<Ticket> getTicketByUserId(int user_id);
+
+
+    List<Ticket> getTicketByType(String type);
+
 }
+

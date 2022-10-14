@@ -41,12 +41,14 @@ public class UserService {
         String first = sc.nextLine();
         System.out.println("Enter last name");
         String last = sc.nextLine();
+        System.out.println("manager enter true, employee enter false");
+        boolean manager = Boolean.parseBoolean(sc.nextLine());
         System.out.println("Enter username");
         String username = sc.nextLine();
         System.out.println("Enter password");
         String password = sc.nextLine();
 
-        User user = ud.createUser(first, last, username, password);
+        User user = ud.createUser(first, last, manager, username, password);
         return user;
     }
 
