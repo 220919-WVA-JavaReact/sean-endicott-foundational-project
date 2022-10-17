@@ -8,7 +8,7 @@ public class Ticket {
     private String description;
     private String status;
     private int userId;
-    //Ticket ticket;
+
 
     public Ticket(int id, float amount, String description, String status, int userId){
         this.id = id;
@@ -23,6 +23,10 @@ public class Ticket {
     }
 
     public Ticket(){
+
+    }
+
+    public Ticket(int receivedId, float receivedAmount, String receivedDescription, String receivedType, String receivedStatus, int user_id) {
 
     }
 
@@ -65,6 +69,8 @@ public class Ticket {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

@@ -14,15 +14,18 @@ public class App {
 
 
     public static void main(String[] args) {
+        //main menu-----------------------------------------------------------------------
         boolean running = true;
         while(running) {
-            System.out.println("Enter 1 -> to login.\nEnter 2 -> to register user.\nEnter 3 -> to quit");
+            System.out.println("Enter\n1-> to login.\n2-> to register user.\n3-> to quit");
             Scanner sc = new Scanner(System.in);
             String choice = sc.nextLine();
             User loggedInUser = null;
             if (choice.equals("1")) {
                 loggedInUser = us.login();
-            } else if (choice.equals("2")) {
+
+            }
+            else if (choice.equals("2")) {
                     if(loggedInUser != us.register()){
                         System.out.println("1-> re-enter user info\n2-> exit\n3-> to continue");
                         String subChoice = sc.nextLine();
@@ -37,14 +40,16 @@ public class App {
                                 continue;
                         }
                     }
-            } else if(choice.equals ("3")){
+            }
+            else if(choice.equals ("3")){
                 running = false;
-            } else {
+            }
+            else {
                 System.out.println("Invalid entry");
             }
             while (loggedInUser != null) {
                 if (!loggedInUser.isManager()) {
-                    System.out.println("Enter 1 to submit a new reimbursement ticket.\n2-> to view your submitted tickets.\n3-> search by ticket type.\n4-> to logout");
+                    System.out.println("Enter\n1-> to submit a new reimbursement ticket.\n2-> to view your submitted tickets.\n3-> search by ticket type.\n4-> manager functions\n5-> to logout");
                     String subChoice = sc.nextLine();
                     switch (subChoice) {
                         case "1":
@@ -57,6 +62,21 @@ public class App {
                             ts.getTicketByType();
                             break;
                         case "4":
+                if (loggedInUser.isManager()){
+                    System.out.println("Enter\n1-> to view all tickets.\n2-> view by id\n3-> view by type");
+                    String mngChoice = sc.nextLine();
+                    TicketService ts = null;
+                    switch(mngChoice){
+                        case "1":
+                            ts.getAllTickets();
+                            break;
+                        case "2":
+                            ts.getTicketById();
+                            break;
+                    }
+                }
+
+                        case "5":
                             loggedInUser = null;
                             break;
                         default:
@@ -64,19 +84,19 @@ public class App {
                             break;
                     }
                 }
-            else if (loggedInUser.isManager()){
-                System.out.println("Enter 1. to view all tickets.\n2-> view by id\n3-> view by type");
-                String subChoice = sc.nextLine();
-                TicketService ts = null;
-                switch(subChoice){
-                    case "1":
-                        ts.getAllTickets();
-                        break;
-                    case "2":
-                        ts.getTicketById();
-                        break;
-                }
-            }
+//            else if (loggedInUser.isManager()){
+//                System.out.println("Enter 1. to view all tickets.\n2-> view by id\n3-> view by type");
+//                String subChoice = sc.nextLine();
+//                TicketService ts = null;
+//                switch(subChoice){
+//                    case "1":
+//                        ts.getAllTickets();
+//                        break;
+//                    case "2":
+//                        ts.getTicketById();
+//                        break;
+//                }
+//            }
             }
 
         }

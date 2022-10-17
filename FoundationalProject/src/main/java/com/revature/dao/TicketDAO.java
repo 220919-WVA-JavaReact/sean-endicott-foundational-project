@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TicketDAO {
 
-    Ticket createTicket(float amount, String description, User user);
+    Ticket createTicket(float amount, String description, String type, String status, User user);
 
     List<Ticket> getMyTickets(int user_id);
 

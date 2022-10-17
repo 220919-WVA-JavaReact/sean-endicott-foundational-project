@@ -13,7 +13,7 @@ public class TicketDAOImpl implements TicketDAO {
 
 
     @Override
-    public Ticket createTicket(float amount, String description, User user) {
+    public Ticket createTicket(float amount, String description, String type, String status, User user) {
         System.out.println("Creating Ticket");
         Ticket ticket = new Ticket();
             try (Connection conn = ConnectionUtil.getConnection()){
@@ -21,16 +21,19 @@ public class TicketDAOImpl implements TicketDAO {
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setFloat(1, amount);
                 stmt.setString(2, description);
-                stmt.setInt(3, user.getId());
+                stmt.setString(3, type);
+                stmt.setString(4, status);
+                stmt.setInt(5, user.getId());
                 ResultSet rs;
                 if((rs = stmt.executeQuery()) != null){
                     rs.next();
                     int receivedId = rs.getInt("id");
                     float receivedAmount = rs.getFloat("amount");
                     String receivedDescription = rs.getString("description");
-                    String status = rs.getString("status");
+                    String receivedType = rs.getString("type");
+                    String receivedStatus = rs.getString("status");
                     int user_id = rs.getInt("user_id");
-                    ticket = new Ticket(receivedId, receivedAmount, receivedDescription, status, user_id );
+                    ticket = new Ticket(receivedId, receivedAmount, receivedDescription, receivedType, receivedStatus, user_id );
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

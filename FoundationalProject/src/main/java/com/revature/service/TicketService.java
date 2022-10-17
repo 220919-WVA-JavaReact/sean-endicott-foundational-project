@@ -23,8 +23,10 @@ public class TicketService {
         String description = sc.nextLine();
         System.out.println("Enter reimbursement type");
         String type = sc.nextLine();
+        System.out.println("ticket status pending");
+        String status = sc.nextLine();
 
-        Ticket ticket = td.createTicket(amount, description, user);
+        Ticket ticket = td.createTicket(amount, description, type, status, user);
     }
 
 
